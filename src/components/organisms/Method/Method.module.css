@@ -1,0 +1,78 @@
+/* Spec §10 — medium [v2]. A connected step track that visibly progresses:
+   horizontal on desktop, a vertical subway map on mobile. No character-arrows. */
+
+.track {
+  position: relative;
+  margin-top: 44px;
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 34px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line);
+}
+
+/* A single element whose width (desktop) or height (mobile) is driven straight
+   from the scroll-progress value. */
+.fill {
+  position: absolute;
+  left: 0;
+  top: 34px;
+  height: 2px;
+  width: 0;
+  border-radius: 2px;
+  background: var(--accent-ink);
+  box-shadow: var(--rail-glow);
+  transition: width 0.25s ease-out;
+}
+
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sub {
+  margin-top: 44px;
+}
+
+@media (max-width: 820px) {
+  .track {
+    margin-left: 4px;
+  }
+
+  .line {
+    left: 20px;
+    right: auto;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    height: auto;
+  }
+
+  .fill {
+    left: 20px;
+    top: 8px;
+    width: 2px;
+    height: 0;
+    transition: height 0.25s ease-out;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

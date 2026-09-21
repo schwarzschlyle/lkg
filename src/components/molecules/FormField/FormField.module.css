@@ -1,0 +1,42 @@
+/* Spec §1.2a: form fields are component-internal content, so they stay
+   LEFT-aligned even inside the centred Contact section. */
+
+.field {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.control {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  transition: border-color var(--dur-hover);
+}
+
+.control::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.control:focus {
+  outline: none;
+  border-color: var(--accent-ink);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 84px;
+}

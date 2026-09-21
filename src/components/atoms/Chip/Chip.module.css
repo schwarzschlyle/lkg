@@ -1,0 +1,27 @@
+/* Spec §11: plain text; on hover a thin accent underline wipes in. */
+.chip {
+  position: relative;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.chip::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--accent-ink);
+  transition: width var(--dur-hover);
+}
+
+.chip:hover::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip::after {
+    transition: none;
+  }
+}

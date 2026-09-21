@@ -1,0 +1,82 @@
+/* Spec §5 — loud ★. Order → chaos → order. */
+
+.section {
+  text-align: center;
+}
+
+/* The heading "breaks": RGB channel split, jitter, warning-amber bleed.
+   Runs ONCE on scroll-in, never loops. */
+.glitching {
+  animation: glitch 0.5s steps(2) 1;
+  color: var(--warn);
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow:
+      2px 0 var(--warn),
+      -2px 0 var(--accent);
+    transform: translateX(1px);
+  }
+  25% {
+    text-shadow:
+      -2px 0 var(--warn),
+      2px 0 var(--accent);
+    transform: translateX(-2px);
+  }
+  50% {
+    text-shadow:
+      2px 0 #ff5a5a,
+      -2px 0 var(--accent);
+    transform: translateX(1px);
+  }
+  100% {
+    text-shadow: none;
+    transform: none;
+  }
+}
+
+.heading {
+  margin: 0 auto 20px;
+}
+
+.lead {
+  margin: 0 auto 40px;
+}
+
+/* Spec §1.2a: list items are component-internal content — LEFT-aligned. */
+.list {
+  list-style: none;
+  max-width: 520px;
+  margin: 0 auto 44px;
+  text-align: left;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 18px;
+  color: var(--text);
+}
+
+.item::before {
+  content: '×';
+  color: var(--warn);
+  font-weight: 700;
+}
+
+/* The resolve line snaps everything back crisp, calm and accent-solid. */
+.resolve {
+  font-size: clamp(24px, 3.4vw, 34px);
+  max-width: 22ch;
+  margin: 0 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitching {
+    animation: none;
+  }
+}

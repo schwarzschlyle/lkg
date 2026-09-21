@@ -1,0 +1,23 @@
+/* Spec §1.3: max content width 1100px, 24px min gutters,
+   120–140px vertical padding desktop / 72px mobile (§15). */
+.section {
+  position: relative;
+  padding: var(--section-pad) 0;
+}
+
+@media (max-width: 820px) {
+  .section {
+    padding: 72px 0;
+  }
+}
+
+/* Spec §1.1b: content sits in its own stacking layer so the light section's
+   clip-path maths never affects it. Harmless in dark sections, so it is
+   applied unconditionally rather than as a light-mode override. */
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}

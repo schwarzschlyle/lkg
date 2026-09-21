@@ -1,0 +1,18 @@
+/* Spec §1.2: lead/body 18px/1.65, measure constrained to 60ch, centred. */
+.lead {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 60ch;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+/* Spec §1.2a (mobile refinement) — see SectionHeading. */
+@media (max-width: 820px) {
+  .content {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

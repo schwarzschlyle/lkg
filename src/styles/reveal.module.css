@@ -1,0 +1,49 @@
+/* Single source of the reveal-on-scroll motion (spec §1.4):
+   opacity 0 → 1, translateY(24px) → 0, 500ms, ease-out-quint.
+
+   Deliberately a keyframe animation rather than a transition. Revealed
+   elements very often also carry a component `transition` of their own (card
+   tilt, stack-cell hover), and two `transition` shorthands on one element let
+   CSS-module load order decide which survives. An animation cannot collide
+   with those.
+
+   `backwards` fill holds the start frame during a stagger delay but, unlike
+   `forwards`, does not outrank inline styles once the animation is done — so
+   the card tilt can still write `style.transform` afterwards. */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.revealed {
+  opacity: 1;
+  transform: none;
+  animation: revealIn var(--dur-reveal) var(--ease-out-quint) backwards;
+}
+
+@keyframes revealIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Spec §1.4: on reduce, ALL motion becomes an instant fade — no translate. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none;
+  }
+
+  .revealed {
+    animation-name: fadeIn;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}

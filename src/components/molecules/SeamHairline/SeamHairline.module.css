@@ -1,0 +1,153 @@
+/* Spec §1.1b — the signature seam.
+   The light section's own clip-path would cut away any line drawn on its edge,
+   so the hairline is an unclipped overlay that is a SIBLING of the clipped
+   section, anchored to the wrapper and exactly `--slant` tall. */
+.seam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--slant);
+  pointer-events: none;
+  z-index: 6;
+  overflow: visible;
+  /* Luminous: teal into the dark, warm on the light side. */
+  filter: drop-shadow(0 0 5px rgb(61 214 196 / 0.45)) drop-shadow(0 0 2px rgb(194 96 61 / 0.4));
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.seam svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Converging comets: teal launches from the left, terracotta from the right,
+   and they meet at the centre peak — the two modes converging. */
+.comet {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cometLeft {
+  background: radial-gradient(circle, #eafffb 0%, #3dd6c4 45%, transparent 72%);
+}
+
+.cometRight {
+  background: radial-gradient(circle, #fff4ee 0%, #c2603d 45%, transparent 72%);
+}
+
+.top.run .cometLeft {
+  animation: topLeft 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.top.run .cometRight {
+  animation: topRight 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.bottom.run .cometLeft {
+  animation: bottomLeft 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.bottom.run .cometRight {
+  animation: bottomRight 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes topLeft {
+  0% {
+    opacity: 0;
+    left: 0%;
+    top: 100%;
+    box-shadow: 0 0 12px 3px rgb(61 214 196 / 0.85);
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: 50%;
+    top: 0%;
+  }
+}
+
+@keyframes topRight {
+  0% {
+    opacity: 0;
+    left: 100%;
+    top: 100%;
+    box-shadow: 0 0 12px 3px rgb(194 96 61 / 0.85);
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: 50%;
+    top: 0%;
+  }
+}
+
+@keyframes bottomLeft {
+  0% {
+    opacity: 0;
+    left: 0%;
+    top: 0%;
+    box-shadow: 0 0 12px 3px rgb(61 214 196 / 0.85);
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: 50%;
+    top: 100%;
+  }
+}
+
+@keyframes bottomRight {
+  0% {
+    opacity: 0;
+    left: 100%;
+    top: 0%;
+    box-shadow: 0 0 12px 3px rgb(194 96 61 / 0.85);
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: 50%;
+    top: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comet {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}

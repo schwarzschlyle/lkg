@@ -1,0 +1,82 @@
+/* Spec §2 — a dropdown jump-menu that slides down from the top. It sits BELOW
+   the nav bar in z-order so the X stays tappable to close. */
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 850;
+  padding: calc(88px + env(safe-area-inset-top, 0px)) var(--gutter) 34px;
+  background: rgb(11 11 13 / 0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+  transform: translateY(-102%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform 0.45s var(--ease-out-quint),
+    opacity 0.3s,
+    visibility 0.45s;
+}
+
+.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.link {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 23px;
+  color: var(--text);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  opacity: 0;
+  transform: translateX(-12px);
+  transition:
+    opacity 0.4s,
+    transform 0.4s,
+    color 0.2s;
+}
+
+/* Items reveal with a stagger when the panel opens. */
+.open .link {
+  opacity: 1;
+  transform: none;
+}
+
+.link:hover,
+.link:active {
+  color: var(--accent);
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  min-width: 24px;
+}
+
+.cta {
+  justify-content: center;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid var(--accent);
+  border-bottom-color: var(--accent);
+  border-radius: 10px;
+  color: var(--accent);
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu,
+  .link {
+    transition-duration: 0.01ms;
+  }
+}

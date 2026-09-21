@@ -1,0 +1,14 @@
+/* Spec §1.1d A2: faint teal radial glows so the dark reads as *lit*, not flat.
+   `--glow-display` is `none` inside light sections, so these never leak
+   into the warm bone blocks. */
+.glow {
+  display: var(--glow-display);
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(70px);
+  opacity: 0.5;
+  background: radial-gradient(circle, rgb(61 214 196 / 0.16), transparent 70%);
+  will-change: transform;
+}

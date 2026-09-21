@@ -1,0 +1,35 @@
+/* Spec §1.2a: section headings are CENTRED in every section, so the rhythm is
+   identical top to bottom. Type scale from §1.2, dramatised ≥900px (§1.1d D). */
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 4.5vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .heading {
+    font-size: clamp(44px, 3.6vw, 58px);
+  }
+}
+
+/* Declared after the media query so the quiet Toolkit heading wins at
+   every width without needing extra specificity. */
+.compact {
+  font-size: 28px;
+}
+
+/* Spec §1.2a (mobile refinement): content sections left-align their heading on
+   narrow screens so it reads as one column with the left-anchored content
+   beneath. Statement sections stay centred because their content is centred. */
+@media (max-width: 820px) {
+  .content {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

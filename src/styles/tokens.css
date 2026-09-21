@@ -1,0 +1,154 @@
+/* =============================================================================
+   DESIGN TOKENS — spec §1.1
+   One system, two matched modes. Dark is the default (`:root`); light sections
+   opt in with `.section--light`, which re-declares the same token names.
+
+   This is the ONLY global theme hook in the codebase. Components never write
+   `.section--light .thing { ... }` overrides — they read tokens and inherit the
+   correct mode automatically from whichever section contains them.
+   ========================================================================== */
+
+:root {
+  /* ---- Layout ---- */
+  --max: 1100px;
+  --gutter: 24px;
+  --section-pad: 120px;
+  --slant: 2.4vw;
+
+  /* ---- Core palette (dark — showpiece / drama) ---- */
+  --bg: #0b0b0d;
+  --elev: #141418;
+  --line: #26262c;
+  --text: #f5f5f3;
+  --muted: #8a8a92;
+  --card: #141418;
+  --cardline: #26262c;
+  --shadow: 0 20px 40px rgb(0 0 0 / 0.5);
+
+  /* Accents. `--accent` is the bright teal and stays bright in BOTH modes
+     (it is used by the always-dark nav pill). `--accent-ink` is the accent
+     that meets the LOCAL background, so it is what content should use. */
+  --accent: #3dd6c4;
+  --accent-ink: #3dd6c4;
+  --warn: #e8a33d;
+
+  /* Solid text colour for use on top of a filled accent button. */
+  --on-accent: #08201d;
+
+  /* ---- Type ---- */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
+  /* ---- Motion ---- */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-reveal: 500ms;
+  --dur-hover: 250ms;
+
+  /* ---- Derived component tokens (flipped per mode) ---- */
+
+  /* Atmosphere: faint radial glows only exist in dark sections. */
+  --glow-display: block;
+
+  /* Differentiator cards (spec §6, §1.1c) */
+  --card-shadow: none;
+  --card-numeral: #ffffff;
+  --card-spotlight: rgb(61 214 196 / 0.16);
+  --card-edge: rgb(61 214 196 / 0.7);
+  --viz-line-hover: #b9c0c9;
+
+  /* Rails, tracks and nodes (Method / Phasing / Depth) */
+  --rail-glow: 0 0 10px var(--accent);
+  --node-glow: 0 0 16px var(--accent);
+  --node-pulse: youarehere 1.6s ease-in-out infinite;
+
+  /* Deliverable blueprint cards (spec §8, §1.1c) */
+  --doc-surface: #f3f1ec;
+  --doc-border: transparent;
+  --doc-ink: #222222;
+  --doc-label: #555555;
+  --doc-rule: #d9d5cc;
+  --doc-shadow: 0 20px 40px rgb(0 0 0 / 0.5);
+  --doc-hover-filter: brightness(1.07);
+  --doc-hover-shadow: 0 34px 60px rgb(0 0 0 / 0.6), 0 0 34px rgb(61 214 196 / 0.28);
+
+  /* Filled-button hover bloom */
+  --btn-glow: 0 0 30px rgb(61 214 196 / 0.5);
+
+  /* Editorial section index numeral (spec §1.1d B) */
+  --sindex-numeral-opacity: 0.05;
+}
+
+/* The "you-are-here" pulse is named by `--node-pulse` above. It lives here,
+   global, because a CSS Module would rename the keyframes and the token — which
+   is just a string — would no longer resolve to it. */
+@keyframes youarehere {
+  0%,
+  100% {
+    box-shadow: 0 0 12px var(--accent);
+  }
+  50% {
+    box-shadow: 0 0 22px var(--accent);
+  }
+}
+
+/* -----------------------------------------------------------------------------
+   LIGHT SECTIONS — warm bone paper, terracotta ink (spec §1.1)
+   Sepia ink on paper, not cold grey: neutrals are warm-tinted throughout.
+   -------------------------------------------------------------------------- */
+.section--light {
+  --bg: #f4f2ec;
+  --elev: #fbfaf6;
+  --line: #e2ded3;
+  --text: #1a1712;
+  --muted: #7a6e60;
+  --card: #fbfaf6;
+  --cardline: #e7e2d6;
+  --shadow: 0 18px 40px rgb(60 40 24 / 0.12);
+
+  /* The complementary warm accent. `--accent` deliberately stays teal. */
+  --accent-ink: #c2603d;
+  --on-accent: #fff7f2;
+
+  --glow-display: none;
+
+  --card-shadow: var(--shadow);
+  --card-numeral: var(--text);
+  --card-spotlight: rgb(194 96 61 / 0.12);
+  --card-edge: rgb(194 96 61 / 0.6);
+  --viz-line-hover: #4a3f34;
+
+  /* Depth via soft warm drop-shadows, never glows. */
+  --rail-glow: none;
+  --node-glow: 0 0 8px rgb(194 96 61 / 0.35);
+  --node-pulse: none;
+
+  --doc-surface: #ffffff;
+  --doc-border: var(--cardline);
+  --doc-shadow: var(--shadow);
+  --doc-hover-filter: brightness(1.02);
+  --doc-hover-shadow: 0 34px 60px rgb(60 40 24 / 0.2);
+
+  --btn-glow: 0 14px 30px rgb(194 96 61 / 0.3);
+
+  --sindex-numeral-opacity: 0.06;
+
+  background: var(--bg);
+  color: var(--text);
+  position: relative;
+
+  /* Symmetric centre-peak chevron seam (spec §1.1b) — mirror-symmetric so the
+     block never reads lopsided. The dark body shows through the 4 corners. */
+  clip-path: polygon(
+    0 var(--slant),
+    50% 0,
+    100% var(--slant),
+    100% calc(100% - var(--slant)),
+    50% 100%,
+    0 calc(100% - var(--slant))
+  );
+
+  /* Fold shadow: follows the clip, so the block reads as a raised sheet. */
+  filter: drop-shadow(0 -10px 22px rgb(0 0 0 / 0.55))
+    drop-shadow(0 12px 22px rgb(0 0 0 / 0.45));
+}

@@ -1,0 +1,12 @@
+/* Spec §2: 2px accent bar on the top edge, filling left→right with scroll. */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  z-index: 1000;
+  transform-origin: left center;
+  pointer-events: none;
+}

@@ -1,0 +1,108 @@
+/* Spec §14 — quiet. Thin bar with a hairline top border. */
+
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 30px 0;
+}
+
+.inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+
+.separator,
+.copyright {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.copyright {
+  font-size: 14px;
+}
+
+.links {
+  display: flex;
+}
+
+.links a {
+  margin-left: 18px;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--dur-hover);
+}
+
+.links a:hover {
+  color: var(--accent);
+}
+
+.note {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.6;
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* Spec §14 (mobile): the row stacks and centres, the "·" is hidden, and the
+   copyright drops to its own line under LKG. */
+@media (max-width: 820px) {
+  .footer {
+    padding: 26px 0;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .brand {
+    font-size: 15px;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .copyright {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+  .links {
+    gap: 24px;
+    justify-content: center;
+  }
+
+  .links a {
+    margin-left: 0;
+  }
+
+  .note {
+    font-size: 11px;
+    margin-top: 20px;
+    padding: 0 12px;
+    line-height: 1.5;
+  }
+}

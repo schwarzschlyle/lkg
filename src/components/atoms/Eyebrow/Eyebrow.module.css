@@ -1,0 +1,8 @@
+/* Spec §1.2: mono 13px uppercase, letter-spacing 0.15em, accent. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}

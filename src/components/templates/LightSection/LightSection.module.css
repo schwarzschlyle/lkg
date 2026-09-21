@@ -1,0 +1,6 @@
+/* Spec §1.1b: the seam hairlines must not be clipped by the section's own
+   clip-path, so the section is wrapped in an unclipped container and the
+   hairlines are drawn as siblings of it. */
+.wrapper {
+  position: relative;
+}

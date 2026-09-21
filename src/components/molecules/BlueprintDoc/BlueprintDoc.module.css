@@ -1,0 +1,78 @@
+/* Spec §8 — one "document" card in the blueprint fan.
+   Light paper with a thin accent top-edge; crisp white on bone, because light
+   paper on bone would vanish (§1.1c). */
+
+.doc {
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  width: 200px;
+  height: 150px;
+  padding: 14px;
+  border-radius: 8px;
+  text-align: left;
+  color: var(--doc-ink);
+  background: var(--doc-surface);
+  border: 1px solid var(--doc-border);
+  border-top: 3px solid var(--accent-ink);
+  box-shadow: var(--doc-shadow);
+  transform: translateX(-50%);
+  transition:
+    transform 0.8s var(--ease-out-quint),
+    opacity 0.8s,
+    filter var(--dur-hover),
+    box-shadow var(--dur-hover);
+}
+
+/* Hover lifts a card out of the fan. Uses filter/box-shadow and z-index, never
+   transform — the fan positions themselves live in the inline transform. */
+@media (hover: hover) and (pointer: fine) {
+  .doc:hover {
+    z-index: 30;
+    filter: var(--doc-hover-filter);
+    box-shadow: var(--doc-hover-shadow);
+  }
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--doc-label);
+}
+
+.rule {
+  margin-top: 8px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--doc-rule);
+}
+
+.ruleShort {
+  width: 60%;
+}
+
+/* Spec §8: cards scale down so all 7 stay inside the viewport, never clipped. */
+@media (max-width: 640px) {
+  .doc {
+    width: 132px;
+    height: 104px;
+    top: 26px;
+    padding: 10px;
+  }
+
+  .label {
+    font-size: 9px;
+  }
+
+  .rule {
+    margin-top: 6px;
+    height: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doc {
+    transition: none;
+  }
+}

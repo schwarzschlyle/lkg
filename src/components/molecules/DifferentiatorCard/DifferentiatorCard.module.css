@@ -1,0 +1,226 @@
+/* Spec §6 [v2] — a living, on-theme, interactive object. */
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--cardline);
+  box-shadow: var(--card-shadow);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.25s ease-out,
+    border-color 0.3s;
+}
+
+/* 1 · Mouse-follow spotlight — a soft radial accent glow tracking the cursor. */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(
+    220px circle at var(--mx, 50%) var(--my, 50%),
+    var(--card-spotlight),
+    transparent 60%
+  );
+}
+
+/* 2 · Animated gradient border, via the mask-composite technique. */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  padding: 1px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s;
+  background: linear-gradient(130deg, var(--line), var(--line) 40%, var(--card-edge));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.card:hover::before,
+.card:hover::after,
+.card.playing::before,
+.card.playing::after {
+  opacity: 1;
+}
+
+/* 3 · Inner content sits forward for parallax depth under the 3D tilt. */
+.inner {
+  position: relative;
+  transform: translateZ(30px);
+}
+
+/* 4 · Large faint background numeral. */
+.numeral {
+  position: absolute;
+  top: -6px;
+  right: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 70px;
+  line-height: 1;
+  color: var(--card-numeral);
+  opacity: 0.04;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.card:hover .numeral,
+.card.playing .numeral {
+  opacity: 0.09;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.body {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---- 5 · Themed animated mini-diagram ------------------------------------ */
+.viz {
+  width: 52px;
+  height: 38px;
+  margin-bottom: 18px;
+}
+
+.viz * {
+  transition: 0.3s;
+}
+
+.line {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.accent {
+  fill: none;
+  stroke: var(--accent-ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card:hover .line,
+.card.playing .line {
+  stroke: var(--viz-line-hover);
+}
+
+/* 01 — a flat line dips into a failure spike, then self-heals back to steady. */
+.heal {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+}
+
+.card:hover .heal,
+.card.playing .heal {
+  animation: drawHeal 1.1s var(--ease-out-quint) forwards;
+}
+
+@keyframes drawHeal {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 02 — the link fills left-to-right while the dots ignite in sequence. */
+.phaseFill {
+  stroke-dasharray: 44;
+  stroke-dashoffset: 44;
+}
+
+.card:hover .phaseFill,
+.card.playing .phaseFill {
+  animation: drawPhase 1s ease forwards;
+}
+
+@keyframes drawPhase {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.phaseDot {
+  fill: var(--line);
+}
+
+.card:hover .phaseDot,
+.card.playing .phaseDot {
+  fill: var(--accent-ink);
+}
+
+.card:hover .phaseDot2,
+.card.playing .phaseDot2 {
+  transition-delay: 0.35s;
+}
+
+.card:hover .phaseDot3,
+.card.playing .phaseDot3 {
+  transition-delay: 0.7s;
+}
+
+/* 03 — a node pulsing inside its guardrail brackets. */
+.card:hover .pulse,
+.card.playing .pulse {
+  animation: guardPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes guardPulse {
+  0%,
+  100% {
+    r: 4;
+    opacity: 1;
+  }
+  50% {
+    r: 6.5;
+    opacity: 0.6;
+  }
+}
+
+/* Spec §1.4: on reduce, ALL motion is replaced with instant fades. */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transform: none !important;
+    transition: border-color 0.3s;
+  }
+
+  .viz *,
+  .numeral {
+    transition: none;
+  }
+
+  .heal,
+  .phaseFill {
+    stroke-dashoffset: 0;
+  }
+
+  .card:hover .heal,
+  .card.playing .heal,
+  .card:hover .phaseFill,
+  .card.playing .phaseFill,
+  .card:hover .pulse,
+  .card.playing .pulse {
+    animation: none;
+  }
+}

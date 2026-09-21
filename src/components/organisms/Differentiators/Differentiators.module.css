@@ -1,0 +1,15 @@
+/* Spec §6 — medium [v2]. 2×2 desktop, 1 column mobile.
+   `perspective` on the container is what makes the cards' 3D tilt read. */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  perspective: 1200px;
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

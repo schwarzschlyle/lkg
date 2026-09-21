@@ -1,0 +1,44 @@
+/* Spec §3 — characters start scattered and fly into place.
+
+   Word-safety (required): the per-character spans are grouped inside a
+   non-breaking word wrapper, so the headline only ever wraps BETWEEN words,
+   never mid-word ("Gene/rate"). */
+
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) rotate(8deg);
+  transition:
+    opacity 0.6s var(--ease-out-quint),
+    transform 0.6s var(--ease-out-quint);
+}
+
+.assembled .char {
+  opacity: 1;
+  transform: none;
+}
+
+/* The accent word settles last, with a soft glow. */
+.accentWord .char {
+  color: var(--accent-ink);
+}
+
+.assembled .accentWord .char {
+  text-shadow: 0 0 24px rgb(61 214 196 / 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .char {
+    transform: none;
+    transition: opacity 200ms linear;
+  }
+
+  .assembled .accentWord .char {
+    text-shadow: none;
+  }
+}

@@ -1,0 +1,4 @@
+/* Global stylesheet entry. Order matters: tokens define the variables that
+   every base rule and every component module then reads. */
+@import './tokens.css';
+@import './base.css';

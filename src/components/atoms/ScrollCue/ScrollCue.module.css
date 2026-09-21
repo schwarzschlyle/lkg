@@ -1,0 +1,39 @@
+/* Spec §3: a line with a dot travelling down it, looping. */
+.cue {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 1px;
+  height: 40px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.cue::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 10px;
+  background: var(--accent);
+  animation: travel 1.8s infinite;
+}
+
+@keyframes travel {
+  from {
+    top: -10px;
+  }
+  to {
+    top: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue::after {
+    animation: none;
+    top: 0;
+  }
+}

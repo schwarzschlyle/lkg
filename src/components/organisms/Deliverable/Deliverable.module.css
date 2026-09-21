@@ -1,0 +1,40 @@
+/* Spec §8 — medium [v2]. The fan is a signature visual and is KEPT on every
+   screen; it only ever scales to fit, never switches to a different layout. */
+
+.section {
+  text-align: center;
+}
+
+.lead {
+  margin: 0 auto 50px;
+}
+
+.stack {
+  position: relative;
+  height: 280px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.title {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+@media (max-width: 640px) {
+  .stack {
+    height: 230px;
+    max-width: 100%;
+  }
+
+  .title {
+    bottom: 2px;
+    font-size: 15px;
+  }
+}
