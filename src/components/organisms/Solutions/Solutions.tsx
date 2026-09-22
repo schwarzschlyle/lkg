@@ -38,6 +38,7 @@ export function Solutions() {
           <Reveal className={styles.trackHead}>
             <span className={styles.trackLabel}>{track.label}</span>
             <span className={styles.trackQualifier}>{track.qualifier}</span>
+            <span className={styles.trackReturn}>{track.returns}</span>
           </Reveal>
 
           <div className={styles.grid}>

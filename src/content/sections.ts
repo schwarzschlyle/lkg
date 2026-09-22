@@ -69,6 +69,7 @@ export const SOLUTION_TRACKS: readonly SolutionTrack[] = [
     id: 'internal',
     label: 'INTERNAL SYSTEMS',
     qualifier: 'When the business already runs, but it runs on manual work.',
+    returns: 'Cost that stops',
     cards: [
       {
         id: 'automate',
@@ -100,6 +101,7 @@ export const SOLUTION_TRACKS: readonly SolutionTrack[] = [
     id: 'product',
     label: 'PRODUCTS & APPS',
     qualifier: "When you have an idea, and you want it built properly the first time.",
+    returns: 'Revenue that starts',
     cards: [
       {
         id: 'prove',

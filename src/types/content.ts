@@ -58,6 +58,13 @@ export interface SolutionTrack {
   readonly label: string;
   /** One line saying who this track is for. */
   readonly qualifier: string;
+  /**
+   * How the track pays for itself, in two or three words. Deliberately not
+   * symmetrical in certainty: internal systems remove a cost that already
+   * exists, while a product has to land first. The page says so rather than
+   * flattening both into "makes you money".
+   */
+  readonly returns: string;
   readonly cards: readonly FeatureCardItem[];
 }
 

@@ -16,8 +16,9 @@
    component-internal content, and §1.2a puts that left. */
 .trackHead {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 14px;
+  gap: 10px 14px;
   margin-bottom: 22px;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
@@ -37,6 +38,23 @@
   font-size: 14px;
   line-height: 1.4;
   color: var(--muted);
+}
+
+/* How the track pays for itself. Pushed to the end of the header rule so the
+   eye lands on it last, and styled as the card outcome pill one size up, so
+   the economic claim and the operational ones read as the same language. */
+.trackReturn {
+  flex: none;
+  margin-left: auto;
+  padding: 5px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accent-ink);
+  border: 1px solid var(--cardline);
+  border-radius: 999px;
 }
 
 .grid {
@@ -70,15 +88,35 @@
   .grid {
     grid-template-columns: 1fr;
   }
-
-  .trackHead {
-    flex-direction: column;
-    gap: 6px;
-  }
 }
 
-/* Spec §1.2a mobile refinement. */
 @media (max-width: 820px) {
+  /* Below desktop the three header items stop fitting on one rule, and the
+     pill was wrapping to a line of its own BENEATH the qualifier, which
+     buried the economic claim at the bottom of the header on the screen
+     where attention is shortest.
+
+     Reordered so the two short mono items share the first line and the long
+     qualifier gets its own. `flex: 1 0 100%` is what forces that break: the
+     qualifier can never sit beside anything, so the pill always lands next
+     to the label it belongs to. */
+  .trackLabel {
+    order: 1;
+  }
+
+  .trackReturn {
+    order: 2;
+    /* Nothing to push against once the qualifier is on its own line; the
+       pill reads as part of the label rather than pinned to the edge. */
+    margin-left: 0;
+  }
+
+  .trackQualifier {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  /* Spec §1.2a mobile refinement. */
   .close {
     text-align: left;
     margin-left: 0;
