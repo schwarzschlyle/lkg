@@ -8,5 +8,5 @@ export { MethodStep } from './MethodStep/MethodStep';
 export { PhaseStation } from './PhaseStation/PhaseStation';
 export { SeamHairline } from './SeamHairline/SeamHairline';
 export { SectionIndex } from './SectionIndex/SectionIndex';
-export { StackGroup } from './StackGroup/StackGroup';
+export { QuestionRow } from './QuestionRow/QuestionRow';
 export { ThemeRow } from './ThemeRow/ThemeRow';

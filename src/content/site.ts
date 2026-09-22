@@ -10,7 +10,7 @@ export const SECTION_IDS = {
   deliver: 'deliver',
   phasing: 'phasing',
   method: 'method',
-  stack: 'stack',
+  faq: 'faq',
   contact: 'contact',
 } as const;
 
@@ -41,7 +41,7 @@ export const MOBILE_MENU_LINKS: readonly MobileMenuLink[] = [
   { index: '05', label: 'Deliverable', href: '#deliver' },
   { index: '06', label: 'Phasing', href: '#phasing' },
   { index: '07', label: 'Method', href: '#method' },
-  { index: '08', label: 'Toolkit', href: '#stack' },
+  { index: '08', label: 'Questions', href: '#faq' },
 ];
 
 /** Editorial index shown in each section's right-side void, ≥1000px (spec §1.1d B). */
@@ -53,7 +53,7 @@ export const SECTION_INDEX: Readonly<Record<string, SectionIndexEntry>> = {
   deliver: { numeral: '05', label: 'DELIVERABLE' },
   phasing: { numeral: '06', label: 'PHASING' },
   method: { numeral: '07', label: 'METHOD' },
-  stack: { numeral: '08', label: 'TOOLKIT' },
+  faq: { numeral: '08', label: 'QUESTIONS' },
   contact: { numeral: '09', label: 'CONTACT' },
 };
 
@@ -66,6 +66,6 @@ export const TRACKED_SECTIONS: readonly string[] = [
   'deliver',
   'phasing',
   'method',
-  'stack',
+  'faq',
   'contact',
 ];

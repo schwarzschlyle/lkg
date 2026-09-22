@@ -1,0 +1,47 @@
+/* Spec §11 slot, repurposed. Quiet and dark so the Contact accent still
+   blooms after it, but editorial rather than empty: a two-column rule grid
+   that reads as substance, not marketing. */
+
+.section {
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 56px;
+  margin-top: 8px;
+}
+
+/* The toolkit, demoted from a whole section to one line. A technical
+   evaluator still gets their competence check; everyone else skims past it. */
+.shipped {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px 16px;
+  margin-top: 56px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+
+.shippedLabel {
+  flex: none;
+  margin-right: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shipped {
+    margin-top: 44px;
+    gap: 9px 14px;
+  }
+}

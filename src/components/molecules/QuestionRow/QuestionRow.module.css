@@ -1,0 +1,79 @@
+/* One question and its answer.
+
+   The section is quiet by design, so the craft is in one detail: a short
+   accent segment draws itself along the row's top rule as the row scrolls
+   into view, and extends the full width on hover. It reads as the answer
+   unlocking, and it borrows the self-drawing motif from the Phasing rail and
+   the Method track without adding a third full rail to the page. */
+
+.row {
+  position: relative;
+  padding: 28px 0 32px;
+  border-top: 1px solid var(--line);
+}
+
+.row::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  transition: width 0.8s var(--ease-out-quint);
+}
+
+/* Drawn on reveal. */
+.lit::before {
+  width: 44px;
+}
+
+.index {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  transition: color 0.4s;
+}
+
+.lit .index {
+  color: var(--accent);
+}
+
+.question {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 12px 0 10px;
+}
+
+.answer {
+  max-width: 46ch;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted);
+  transition: color 0.4s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover::before {
+    width: 100%;
+  }
+
+  .row:hover .answer {
+    color: #c9ccd2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row::before,
+  .index,
+  .answer {
+    transition-duration: 0.01ms;
+  }
+}

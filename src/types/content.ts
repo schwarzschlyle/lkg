@@ -99,9 +99,12 @@ export interface MethodStep {
   readonly glyph: GlyphKey;
 }
 
-export interface StackGroup {
-  readonly category: string;
-  readonly items: readonly string[];
+/** One row in the "Before you book" grid: the objection, and the answer. */
+export interface QuestionItem {
+  readonly id: string;
+  readonly index: string;
+  readonly question: string;
+  readonly answer: string;
 }
 
 export interface SectionIndexEntry {

@@ -13,7 +13,7 @@ import {
   Phasing,
   Problem,
   Solutions,
-  Stack,
+  Questions,
   StickyCta,
   TrustStrip,
 } from '@/components/organisms';
@@ -25,7 +25,7 @@ import { SECTION_IDS } from '@/content/site';
  *
  *   Hero ★ · Trust · [LIGHT] Solutions · Problem ★ · [LIGHT] What I do ·
  *   Depth ★★ · [LIGHT] Deliverable · Phasing ★★ · [LIGHT] Method ·
- *   Toolkit · Contact · Footer
+ *   Before you book · Contact · Footer
  *
  * Solutions is the persuasion layer: it sells the CATEGORY before the page
  * sells the builder, so a visitor who has never considered custom software
@@ -64,7 +64,7 @@ export function App() {
         <Deliverable />
         <Phasing />
         <Method />
-        <Stack />
+        <Questions />
         <Contact />
       </main>
 

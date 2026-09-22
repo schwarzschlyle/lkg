@@ -2,10 +2,10 @@ import type {
   BlueprintLabel,
   DepthTheme,
   FeatureCardItem,
+  QuestionItem,
   SolutionTrack,
   MethodStep,
   Phase,
-  StackGroup,
   TextSegment,
 } from '@/types/content';
 import { BRAND } from './site';
@@ -328,32 +328,84 @@ export const METHOD_STEPS: readonly MethodStep[] = [
   },
 ];
 
-/* ---- §11 STACK ------------------------------------------------------------ */
-export const STACK_HEADING = 'The toolkit.';
+/* ---- §11 BEFORE YOU BOOK -------------------------------------------------
+   Replaces the toolkit. This is the last section before the ask, and the only
+   thing left between a reader and the booking is the questions they have not
+   said out loud. A list of tool names answered none of them.
 
-export const STACK_GROUPS: readonly StackGroup[] = [
+   The spec rules out case studies and client names, so "Have you built this
+   before?" is the ONLY track record anywhere on the page. It describes the
+   class of work rather than the clients, which keeps it inside that
+   constraint while staying specific enough to be credible. */
+export const QUESTIONS = {
+  eyebrow: 'WHAT PEOPLE ASK FIRST',
+  heading: 'Before you book.',
+} as const;
+
+export const QUESTION_ITEMS: readonly QuestionItem[] = [
   {
-    category: 'Frontend',
-    items: ['React', 'TypeScript', 'TanStack Query', 'Tailwind', 'MUI', 'WebSockets'],
+    id: 'speed',
+    index: '01',
+    question: 'How fast can I see something real?',
+    answer:
+      "Days for something simple, a few weeks at most for a proof of concept. You'll be looking at working software, not a slide deck, before you commit to a full build.",
   },
-  { category: 'Backend', items: ['FastAPI', 'Express', 'Celery'] },
   {
-    category: 'Data',
-    items: ['PostgreSQL', 'Redis', 'Pinecone', 'Milvus', 'AWS S3', 'Cloud SQL'],
+    id: 'track-record',
+    index: '02',
+    question: 'Have you built this before?',
+    answer:
+      "Yes, mostly AI products ambitious enough that shipping them was the hard part: retrieval over private data, agents that run unattended, pipelines with real cost ceilings and human oversight. I don't publish client work, so ask on the call and I'll walk you through the architecture.",
   },
   {
-    category: 'Infra & Deploy',
-    items: ['Terraform', 'AWS', 'Azure', 'GCP', 'Docker', 'GitHub Actions', 'Nginx'],
+    id: 'unclear-scope',
+    index: '03',
+    question: "I don't know exactly what I want yet.",
+    answer:
+      "Most people don't. That's what the first phase is for: turning a rough idea into something specific enough to estimate, before anyone commits to building it.",
   },
   {
-    category: 'AI',
-    items: ['LangChain', 'LangGraph', 'LlamaIndex', 'OpenAI', 'Anthropic', 'MCP'],
+    id: 'not-worth-it',
+    index: '04',
+    question: 'What if it turns out not to be worth building?',
+    answer:
+      "Then I'll say so. The proof of concept exists to find that out cheaply, and an honest no is worth more to you than an invoice is to me.",
   },
   {
-    category: 'Integrations & Ops',
-    items: ['Stripe', 'Clerk', 'Auth0', 'Sentry', 'LangSmith'],
+    id: 'non-technical',
+    index: '05',
+    question: 'Do I need to be technical?',
+    answer:
+      "No. You'll get plain-language trade-offs, know why each decision was made, and never have to take a technical claim on faith.",
+  },
+  {
+    id: 'exit',
+    index: '06',
+    question: 'What if I want to take it elsewhere?',
+    answer:
+      "You own the code and the infrastructure. More to the point, it's built to be maintained, so another developer can pick it up and keep going. No lock-in by obscurity.",
   },
 ];
+
+/** The toolkit, demoted from a section to one line. "Shipped with", not
+ *  "stack": these are tools in use, not tools admired. */
+export const SHIPPED_WITH = {
+  label: 'Shipped with',
+  items: [
+    'React',
+    'TypeScript',
+    'FastAPI',
+    'PostgreSQL',
+    'Redis',
+    'AWS',
+    'Terraform',
+    'Docker',
+    'LangGraph',
+    'OpenAI',
+    'Anthropic',
+    'Stripe',
+  ],
+} as const;
 
 /* ---- §13 CONTACT ---------------------------------------------------------- */
 export const CONTACT = {
