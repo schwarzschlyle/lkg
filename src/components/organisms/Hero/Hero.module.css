@@ -69,7 +69,11 @@
 
 .headline {
   font-size: clamp(40px, 7vw, 72px);
-  max-width: 14ch;
+  /* 18ch, not the reference's 14ch. The headline is 74 characters and at a
+     narrower measure wraps to five lines, which overflows the 100vh hero on
+     a 1366x768 laptop (the section is overflow:hidden, so the last line just
+     disappears). 18ch holds it to four and stays inside the spec's 22ch. */
+  max-width: 18ch;
   margin: 18px 0;
 }
 

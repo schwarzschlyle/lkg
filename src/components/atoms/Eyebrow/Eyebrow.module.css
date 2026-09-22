@@ -6,3 +6,21 @@
   text-transform: uppercase;
   color: var(--accent-ink);
 }
+
+/* Section use. Mirrors SectionHeading/Lead so an eyebrow always aligns with
+   the heading it introduces, and adds the gap the heading's own top margin
+   does not provide. The hero variant stays unaligned: it is the one
+   deliberately left-aligned zone on the page (spec §1.2a). */
+.statement,
+.content {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+/* Spec §1.2a mobile refinement: content sections left-align on narrow
+   screens so the heading block reads as one column with its content. */
+@media (max-width: 820px) {
+  .content {
+    text-align: left;
+  }
+}

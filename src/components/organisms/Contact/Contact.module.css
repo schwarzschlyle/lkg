@@ -5,11 +5,11 @@
   text-align: center;
   background: linear-gradient(180deg, #0b0b0d, #0d1312);
 
-  /* Contact used to be preceded by the light About block, whose chevron seam
-     marked this boundary. With About gone, Stack and Contact are both #0b0b0d
-     at the join and the edge disappears entirely, leaving ~240px of unbroken
-     dark. This hairline restores the boundary using the same treatment as the
-     Trust strip and the Footer. */
+  /* Without the light About block before it, Stack and Contact are both
+     #0b0b0d at the join and the boundary disappears entirely, leaving ~240px
+     of unbroken dark between the toolkit grid and the Contact heading. This
+     hairline restores it using the same treatment as the Trust strip and the
+     Footer, so the page ends in a banded rhythm. */
   border-top: 1px solid var(--line);
 }
 

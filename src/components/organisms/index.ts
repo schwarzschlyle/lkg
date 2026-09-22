@@ -9,6 +9,7 @@ export { MobileMenu } from './MobileMenu/MobileMenu';
 export { Navbar } from './Navbar/Navbar';
 export { Phasing } from './Phasing/Phasing';
 export { Problem } from './Problem/Problem';
+export { Solutions } from './Solutions/Solutions';
 export { Stack } from './Stack/Stack';
 export { StickyCta } from './StickyCta/StickyCta';
 export { TrustStrip } from './TrustStrip/TrustStrip';

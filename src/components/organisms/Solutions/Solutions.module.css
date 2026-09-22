@@ -1,0 +1,87 @@
+/* The page's one concession to a visitor who has not yet decided they need
+   software at all, and the only section that serves both buyers explicitly.
+
+   First light section on the page, deliberately: after the dark hero, warm
+   bone is where the answer arrives (spec §1.1a). */
+
+.lead {
+  margin: 0 auto 48px;
+}
+
+.track + .track {
+  margin-top: 52px;
+}
+
+/* Left-aligned even though the section's headings are centred: this is
+   component-internal content, and §1.2a puts that left. */
+.trackHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.trackLabel {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.trackQualifier {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  /* Enables the cards' 3D tilt, exactly as in the differentiator grid. */
+  perspective: 1200px;
+}
+
+/* Three cards per track read denser than four across, so titles come down. */
+.grid h3 {
+  font-size: 20px;
+}
+
+.close {
+  margin: 52px auto 0;
+  max-width: 46ch;
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.45;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trackHead {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* Spec §1.2a mobile refinement. */
+@media (max-width: 820px) {
+  .close {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

@@ -23,12 +23,15 @@
   transform: none;
 }
 
-/* The accent word settles last, with a soft glow. */
-.accentWord .char {
+/* Accent is carried per CHARACTER, not per word: a word can now contain both
+   accented and plain glyphs, which is what keeps "survives" and its full stop
+   in one unbreakable unit while only the letters take the colour. */
+.charAccent {
   color: var(--accent-ink);
 }
 
-.assembled .accentWord .char {
+/* The accent settles last, with a soft glow. */
+.assembled .charAccent {
   text-shadow: 0 0 24px rgb(61 214 196 / 0.45);
 }
 
@@ -38,7 +41,7 @@
     transition: opacity 200ms linear;
   }
 
-  .assembled .accentWord .char {
+  .assembled .charAccent {
     text-shadow: none;
   }
 }

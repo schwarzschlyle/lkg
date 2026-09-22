@@ -12,6 +12,7 @@ import {
   Navbar,
   Phasing,
   Problem,
+  Solutions,
   Stack,
   StickyCta,
   TrustStrip,
@@ -22,9 +23,13 @@ import { SECTION_IDS } from '@/content/site';
  * Section order follows the energy map in spec §1.5 — loud and quiet
  * alternating so nothing competes, and dark/light alternating for rhythm:
  *
- *   Hero ★ · Trust · Problem ★ · [LIGHT] What I do · Depth ★★ ·
- *   [LIGHT] Deliverable · Phasing ★★ · [LIGHT] Method ·
+ *   Hero ★ · Trust · [LIGHT] Solutions · Problem ★ · [LIGHT] What I do ·
+ *   Depth ★★ · [LIGHT] Deliverable · Phasing ★★ · [LIGHT] Method ·
  *   Toolkit · Contact · Footer
+ *
+ * Solutions is the persuasion layer: it sells the CATEGORY before the page
+ * sells the builder, so a visitor who has never considered custom software
+ * has somewhere to start.
  */
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,6 +57,7 @@ export function App() {
       <main>
         <Hero />
         <TrustStrip />
+        <Solutions />
         <Problem />
         <Differentiators />
         <Depth />

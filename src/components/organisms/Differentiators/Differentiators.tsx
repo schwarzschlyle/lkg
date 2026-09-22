@@ -1,5 +1,5 @@
 import { SectionHeading } from '@/components/atoms';
-import { DifferentiatorCard } from '@/components/molecules';
+import { FeatureCard } from '@/components/molecules';
 import { LightSection } from '@/components/templates';
 import { STAGGER_MS } from '@/lib/motion';
 import { DIFFERENTIATORS, DIFFERENTIATORS_HEADING } from '@/content/sections';
@@ -25,7 +25,7 @@ export function Differentiators() {
 
       <div className={styles.grid}>
         {DIFFERENTIATORS.map((item, index) => (
-          <DifferentiatorCard key={item.id} item={item} delay={index * STAGGER_MS} />
+          <FeatureCard key={item.id} item={item} delay={index * STAGGER_MS} />
         ))}
       </div>
     </LightSection>

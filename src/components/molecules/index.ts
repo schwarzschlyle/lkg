@@ -1,7 +1,7 @@
 export { AssembledHeadline } from './AssembledHeadline/AssembledHeadline';
 export type { AssembledHeadlineProps } from './AssembledHeadline/AssembledHeadline';
 export { BlueprintDoc } from './BlueprintDoc/BlueprintDoc';
-export { DifferentiatorCard } from './DifferentiatorCard/DifferentiatorCard';
+export { FeatureCard } from './FeatureCard/FeatureCard';
 export { FormField } from './FormField/FormField';
 export type { FormFieldProps } from './FormField/FormField';
 export { MethodStep } from './MethodStep/MethodStep';

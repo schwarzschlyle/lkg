@@ -17,16 +17,49 @@ export interface MobileMenuLink extends NavLink {
   readonly index: string;
 }
 
-export interface Differentiator {
+/**
+ * One card in a themed grid. Shared by "What I Do Differently" (§6) and the
+ * Solutions grid, which are the same object with different content.
+ */
+export interface FeatureCardItem {
   readonly id: string;
   readonly numeral: string;
   readonly title: string;
   readonly body: string;
   readonly viz: VizKey;
+  /** Optional outcome pill, e.g. "hours back / week". Solutions only. */
+  readonly tag?: string;
 }
 
-/** Keys into the themed mini-diagrams in `DifferentiatorCard/vizzes.tsx`. */
-export type VizKey = 'selfHeal' | 'phaseFill' | 'guardrail' | 'handoff';
+/** Keys into the themed mini-diagrams in `FeatureCard/vizzes.tsx`. */
+export type VizKey =
+  // What I Do Differently
+  | 'selfHeal'
+  | 'phaseFill'
+  | 'guardrail'
+  | 'handoff'
+  // Solutions
+  | 'automate'
+  | 'connect'
+  | 'dashboard'
+  | 'selfServe'
+  | 'assistant'
+  | 'prove';
+
+/**
+ * One of the two kinds of work on offer. The page serves two buyers, an
+ * operator with a business that runs on manual work and a founder with a
+ * product idea, and the tracks are what let each recognise themselves
+ * without the copy going vague to cover both.
+ */
+export interface SolutionTrack {
+  readonly id: string;
+  /** Mono label, e.g. "INTERNAL SYSTEMS". */
+  readonly label: string;
+  /** One line saying who this track is for. */
+  readonly qualifier: string;
+  readonly cards: readonly FeatureCardItem[];
+}
 
 export interface DepthTheme {
   readonly id: string;

@@ -1,7 +1,8 @@
 import type {
   BlueprintLabel,
   DepthTheme,
-  Differentiator,
+  FeatureCardItem,
+  SolutionTrack,
   MethodStep,
   Phase,
   StackGroup,
@@ -11,15 +12,24 @@ import { BRAND } from './site';
 
 /* ---- §3 HERO -------------------------------------------------------------- */
 export const HERO = {
-  eyebrow: 'PRODUCTION-GRADE WEB & AI DEVELOPMENT',
+  eyebrow: 'PRODUCTION-GRADE SOFTWARE · WEB · AI',
+  // Leads with the capability, not the concession. The previous opener
+  // ("Anyone can generate software") spent the largest type on the page
+  // making the competitor's argument, and spoke only to a buyer weighing an
+  // AI tool, which the Track A operator is not.
   headline: [
-    { text: 'Anyone can generate an app. I engineer ones that ' },
-    { text: 'survive', accent: true },
-    { text: '.' },
+    { text: 'I engineer software that ' },
+    { text: 'survives', accent: true },
+    { text: ' real users, real data, and real failure.' },
   ] as readonly TextSegment[],
-  sub: 'AI can scaffold software in an afternoon. Then it breaks under real users, real data, and real failure. I build the whole system beneath the surface, so yours holds.',
+  // The closing clause used to be "when real users and real data arrive",
+  // which now restates the headline almost word for word. "The demo is the
+  // easy part" stays: it plants the antecedent the Problem section needs.
+  sub: "Internal systems that end the manual work, or the product you've been describing. Either way the demo is the easy part. I build everything underneath it.",
   primaryCta: { label: 'Book a free consult', href: '#contact' },
-  secondaryCta: { label: 'See how ↓', href: '#problem' },
+  // Solutions is the first section after the hero now; pointing this at
+  // #problem jumped clean over the one section written for the operator.
+  secondaryCta: { label: 'See how ↓', href: '#solutions' },
   // \u00A0 (non-breaking) so the wide gaps around the dot survive HTML
   // whitespace collapsing, as the reference's &nbsp; entities did.
   readout: 'uptime 99.99%\u00A0\u00A0·\u00A0\u00A0p99 42ms',
@@ -28,15 +38,105 @@ export const HERO = {
 /* ---- §4 TRUST STRIP ------------------------------------------------------- */
 export const TRUST_ITEMS: readonly string[] = [
   'Built to survive production',
-  'AI-fluent, not AI-hype',
+  'Fewer manual hours',
   'End-to-end ownership',
   'Engineered, not assembled',
+];
+
+/* ---- SOLUTIONS (new) -----------------------------------------------------
+   The whole persuasion layer, in one section. The header names the pain so a
+   visitor who has never considered custom software recognises themselves in
+   it; the cards answer it. Kept deliberately short: this sits between the
+   hero and the Problem section, and anything longer reads as a second page
+   before the argument has started. */
+export const SOLUTIONS = {
+  eyebrow: 'WHAT I BUILD',
+  heading: 'Two problems. The same engineering underneath.',
+  lead: 'Most work is one of these. Both fail the same way when the foundation is wrong.',
+  /* Hands off to the Problem section. Without it a reader who has just been
+     shown what is possible walks into a warning about demos they never ran.
+
+     Phrased so the difficulty attaches to the CRAFT, not to this work: the
+     earlier wording ("whether it still works in a year") sat at the end of an
+     offer list, so its nearest referent was the offer itself and it read as a
+     disclaimer. */
+  close:
+    'All of this is buildable today. The hard part is building it so it still holds when the business depends on it.',
+} as const;
+
+export const SOLUTION_TRACKS: readonly SolutionTrack[] = [
+  {
+    id: 'internal',
+    label: 'INTERNAL SYSTEMS',
+    qualifier: 'When the business already runs, but it runs on manual work.',
+    cards: [
+      {
+        id: 'automate',
+        numeral: '01',
+        title: 'Automate the busywork',
+        body: 'Invoices, reports, data entry, reminders and follow-ups, generated and sent automatically, accurately, every time. You review and approve. You never retype.',
+        tag: 'hours back / week',
+        viz: 'automate',
+      },
+      {
+        id: 'connect',
+        numeral: '02',
+        title: 'Connect your tools',
+        body: 'Your CRM, spreadsheets, inbox, accounting and store, wired together so information is entered once and stays in sync everywhere.',
+        tag: 'always in sync',
+        viz: 'connect',
+      },
+      {
+        id: 'dashboard',
+        numeral: '03',
+        title: 'See your whole business',
+        body: 'A single dashboard showing what is really happening across sales, jobs, stock, cash and customers. Real time, one place.',
+        tag: 'one clear view',
+        viz: 'dashboard',
+      },
+    ],
+  },
+  {
+    id: 'product',
+    label: 'PRODUCTS & APPS',
+    qualifier: "When you have an idea, and you want it built properly the first time.",
+    cards: [
+      {
+        id: 'prove',
+        numeral: '01',
+        title: 'Prove it before you fund it',
+        body: 'A working proof of concept first, in weeks rather than months. You find out whether the idea holds up before you commit a real budget to it.',
+        tag: 'certainty, cheaply',
+        viz: 'prove',
+      },
+      {
+        id: 'product',
+        numeral: '02',
+        title: 'Products your customers use',
+        body: 'The part people actually touch: accounts, booking, payments, dashboards. Fast, accessible, and built so someone can use it without being taught.',
+        tag: 'built to be used',
+        viz: 'selfServe',
+      },
+      {
+        id: 'ai',
+        numeral: '03',
+        title: 'AI that actually ships',
+        body: 'Assistants, search and automation grounded in your own data, with guardrails, cost control and human oversight. Useful in production, not just in a demo.',
+        tag: 'grounded and guarded',
+        viz: 'assistant',
+      },
+    ],
+  },
 ];
 
 /* ---- §5 THE PROBLEM ------------------------------------------------------- */
 export const PROBLEM = {
   heading: 'The demo works. Then reality arrives.',
-  lead: 'AI tools ace the first 20%. The last 80%, the part that decides whether a business can actually run on it, is where they leave you stranded.',
+  // Broadened past AI tools. The operator reading Track A is not choosing
+  // between this and a code generator; they are choosing between this, a
+  // rushed freelance build, an off-the-shelf tool, and doing nothing. Every
+  // failure below applies to all of them, so the lead has to name all of them.
+  lead: 'AI tools ace the first 20%. So does a rushed build, and so does a tool that almost fits. The last 80%, the part that decides whether a business can actually run on it, is where all of them leave you stranded.',
   failures: [
     'No real security.',
     'Data that corrupts under load.',
@@ -45,7 +145,7 @@ export const PROBLEM = {
     'Code no one understands.',
   ],
   resolve: [
-    { text: 'Those failures hide in the layers AI skips. ' },
+    { text: 'Those failures hide in the layers most builds skip. ' },
     { text: "I don't skip them.", accent: true },
   ] as readonly TextSegment[],
 } as const;
@@ -53,7 +153,7 @@ export const PROBLEM = {
 /* ---- §6 WHAT I DO DIFFERENTLY --------------------------------------------- */
 export const DIFFERENTIATORS_HEADING = 'Not another dev. An engineer.';
 
-export const DIFFERENTIATORS: readonly Differentiator[] = [
+export const DIFFERENTIATORS: readonly FeatureCardItem[] = [
   {
     id: 'survive',
     numeral: '01',

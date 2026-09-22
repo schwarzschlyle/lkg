@@ -1,11 +1,11 @@
 import { useIsTouch, usePrefersReducedMotion, useRevealBindings, useTilt } from '@/hooks';
 import { cx } from '@/lib/cx';
-import type { Differentiator } from '@/types/content';
+import type { FeatureCardItem } from '@/types/content';
 import { Viz } from './vizzes';
-import styles from './DifferentiatorCard.module.css';
+import styles from './FeatureCard.module.css';
 
-export interface DifferentiatorCardProps {
-  readonly item: Differentiator;
+export interface FeatureCardProps {
+  readonly item: FeatureCardItem;
   /** Stagger offset for the grid reveal (spec §6: 70ms apart). */
   readonly delay: number;
 }
@@ -18,7 +18,7 @@ export interface DifferentiatorCardProps {
  * diagram plays once as the card scrolls into view instead (spec §15) — the
  * card stays alive and meaningful either way.
  */
-export function DifferentiatorCard({ item, delay }: DifferentiatorCardProps) {
+export function FeatureCard({ item, delay }: FeatureCardProps) {
   const isTouch = useIsTouch();
   const reducedMotion = usePrefersReducedMotion();
   const reveal = useRevealBindings();
@@ -44,6 +44,7 @@ export function DifferentiatorCard({ item, delay }: DifferentiatorCardProps) {
         <Viz name={item.viz} />
         <h3 className={styles.title}>{item.title}</h3>
         <p className={styles.body}>{item.body}</p>
+        {item.tag !== undefined ? <span className={styles.tag}>{item.tag}</span> : null}
       </div>
     </div>
   );

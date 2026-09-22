@@ -95,6 +95,30 @@
   line-height: 1.6;
 }
 
+/* Outcome pill. States the payoff in the buyer's terms, not the builder's,
+   which is what makes the Solutions grid legible to a non-technical reader. */
+.tag {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 5px 11px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  border: 1px solid var(--cardline);
+  border-radius: 999px;
+  transition:
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.card:hover .tag,
+.card.playing .tag {
+  border-color: var(--card-edge);
+  background: var(--card-spotlight);
+}
+
 /* ---- 5 · Themed animated mini-diagram ------------------------------------ */
 .viz {
   width: 52px;
